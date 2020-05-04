@@ -1,0 +1,3 @@
+export const STORY_LOADING = 'STORY_LOADING';
+export const STORY_SUCCESS = 'STORY_SUCCESS';
+export const STORY_FAILURE = 'STORY_FAILURE';

@@ -4,18 +4,19 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  console.log('logo', logo);
+  
   return (
     <div className="App">
       <HelmetProvider>
         <Helmet>
-          <title>This is the Quro Site</title>
           <meta name="description" content="Todos on steroid!" />
           <meta name="theme-color" content="#008f68" />
         </Helmet>
         
       </HelmetProvider>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src='/static/media/logo.5d5d9eef.svg' className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>

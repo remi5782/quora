@@ -10,8 +10,9 @@ import App from '../src/App';
 const PORT = process.env.PORT || 3006;
 const app = express();
 const helmet = Helmet.renderStatic();
-// app.use(express.static(path.resolve(__dirname, '..', 'build')));
-app.get('/*', (req, res)=> {
+app.use(express.static(path.resolve(__dirname, '..', 'build')));
+const router = express.Router();
+router.use('^/*', (req, res)=> {
   const app = ReactDOMServer.renderToString(<App/>);
   
   const indexFile = path.resolve('./build/index.html');
@@ -20,37 +21,50 @@ app.get('/*', (req, res)=> {
       console.error('Something went wrong:', err);
       return res.status(500).send('Oops, better luck next time!');
     }
-
+    const preloadedState = [{name:'check', description: 'checking'}];
+    const headerContent = `${helmet.meta.toString()}`;
+    console.log('headerContent', headerContent);
     return res.send(
       data
-      .replace('<div id="root"></div>', `<div id="root">${app}</div>`)
+      .replace('<div id="root"></div>', `<div id="root">This is a react app</div>`)
+      .replace('</head>', '<title>Server Side Rendered</title>'+'</head>')
+      .replace('</body>', `</body><script>
+      // WARNING: See the following for security issues around embedding JSON in HTML:
+      // https://redux.js.org/recipes/server-rendering/#security-considerations
+      window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(
+        /</g,
+        '\\u003c'
+      )}
+    </script>`)
       
       
     );
   });
-  // return res.send(formatHTML(app, helmet));
+  //return res.send(formatHTML(app, helmet));
 });
 
-function formatHTML(app, helmet){
-  return `
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
+// app.use(express.static(path.resolve(__dirname, '..', 'build')));
+// function formatHTML(app, helmet){
+//   return `
+//   <!DOCTYPE html>
+//   <html lang="en">
+//     <head>
     
-    <title>Not a React App</title>
-    ${helmet.meta.toString()}
-    ${helmet.link.toString()}
-      </head>
-    <body>
-      <div id="root">${app}
+//     <title>Not a React App</title>
+//     ${helmet.meta.toString()}
+//     ${helmet.link.toString()}
+//       </head>
+//     <body>
+//       <div id="root">${app}
         
-      </div>
-      <script src="/static/js/2.cc5ed0c6.chunk.js"></script>
-      <script src="/static/css/main.d1b05096.chunk.css"></script>
-    </body>
-  </html>
-`
-}
+//       </div>
+
+//       <script src="/static/js/2.cc5ed0c6.chunk.js"></script>
+//       <script src="/static/css/main.d1b05096.chunk.css"></script>
+//     </body>
+//   </html>
+// `
+// }
 // This is fired every time the server side receives a request
 // app.use(handleRender)
 

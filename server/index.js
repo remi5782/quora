@@ -8,7 +8,7 @@ import App from '..src/App';
 import { fetchCounter } from './api/counter'
 const PORT = process.env.PORT || 3006;
 const app = express();
-app.use(express.static('./build'));
+app.use(express.static('build'));
 // This is fired every time the server side receives a request
 app.use(handleRender)
 
@@ -20,10 +20,18 @@ function handleRender(req, res) {
       const counter = parseInt(params.counter, 10) || apiResult || 0
   
       // Compile an initial state
-      let preloadedState = { counter }
-  
+      let preloadedState = [{ name: 'check', descrp: 'check' }]
+      
+function counterApp(state = [], action) {
+  switch (action.type) {
+    case 'ADD_TODO':
+      return [...state, action.payload]
+    default:
+      return state
+  }
+}
       // Create a new Redux store instance
-      const store = createStore(counterApp={}, preloadedState)
+      const store = createStore(counterApp, preloadedState)
   
       // Render the component to a string
       const html = renderToString(
