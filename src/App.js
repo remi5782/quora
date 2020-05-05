@@ -2,6 +2,7 @@ import React from 'react';
 import {Helmet,HelmetProvider} from 'react-helmet-async';
 import logo from './logo.svg';
 import './App.css';
+import Routes from './routes';
 
 function App() {
   console.log('logo', logo);
@@ -15,20 +16,9 @@ function App() {
         </Helmet>
         
       </HelmetProvider>
-      <header className="App-header">
-        <img src='/static/media/logo.5d5d9eef.svg' className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <React.Fragment>
+           <Routes/>
+        </React.Fragment>
     </div>
   );
 }

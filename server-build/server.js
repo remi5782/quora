@@ -11,8 +11,8 @@ const PORT = process.env.PORT || 3006;
 const app = express();
 const helmet = Helmet.renderStatic();
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
-const router = express.Router();
-router.use('^/*', (req, res)=> {
+// const router = express.Router();
+app.use('*', (req, res)=> {
   const app = ReactDOMServer.renderToString(<App/>);
   
   const indexFile = path.resolve('./build/index.html');
