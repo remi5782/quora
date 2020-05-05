@@ -3,7 +3,8 @@ import axios from 'axios';
 export const getStoryItem = (itemId)=> async (dispatch) => {
     dispatch({type: actionTypes.ITEM_LOADING});
     try{
-        const response = await axios.get(`http://hn.algolia.com/api/v1/items/${itemId}`)
+        const response = await axios.get(`http://hn.algolia.com/api/v1/items/${itemId}`, {headers: {
+            'Content-Type': 'application/json'}})
         dispatch({type: actionTypes.ITEM_SUCCESS, payload: response.data});
     }
     catch(err){
