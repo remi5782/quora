@@ -72,11 +72,4 @@ export default function StoryBookCollection(props) {
     )
 
 }
-// const mapDispatchToProps = (dispatch)=>({
-//     getStoryBookCollection: (query, tags, page)=> dispatch(getStoryBookCollection(query, tags, page))
-// });
-// const mapStateToProps = (state)=>({
-//     storyCollection : state.storyCollection
-// })
 
-// export default connect(mapStateToProps, mapDispatchToProps)(StoryBookCollection);
