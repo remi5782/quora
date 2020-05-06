@@ -2,7 +2,8 @@ import * as actionTypes from './constants';
 const initialState={
     storyCollection:[],
     error:null,
-    isLoading: false
+    isLoading: false,
+    selectedPage: 1
 }
 export default (state=initialState, action)=>{
     switch(action.type){
@@ -12,6 +13,8 @@ export default (state=initialState, action)=>{
             return {...state,isLoading: false, storyCollection:action.payload, error: null}
         case actionTypes.STORY_FAILURE:
             return {...state, isLoading: false, error: action.payload}
+        case actionTypes.SELECT_PAGE:
+            return {...state, selectedPage: action.payload}
         default:
         return state;
     }

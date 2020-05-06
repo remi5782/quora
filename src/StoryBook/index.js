@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
+import * as actionTypes from './constants';
 import { getStoryBookCollection } from './action';
 import StoryLineItem from './subcomponents/StoryLineItem';
 import SearchBox from './subcomponents/StorySearchBox';
@@ -27,11 +28,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function StoryBookCollection(props) {
     const classes = useStyles();
-    const { storyCollection, isLoading, error } = useSelector(state => ({
+    const { storyCollection, isLoading, error, selectedPage } = useSelector(state => ({
         storyCollection: state.storyCollectionData.storyCollection,
         isLoading: state.storyCollectionData.isLoading,
-        error: state.storyCollectionData.error
+        error: state.storyCollectionData.error,
+        selectedPage: state.storyCollectionData.selectedPage
+
     }), shallowEqual);
+    console.log(selectedPage);
     const {nbPages} = storyCollection;
     const dispatch = useDispatch();
     function getStoryCollection(query, tags, page) {
@@ -42,6 +46,7 @@ export default function StoryBookCollection(props) {
     }
     function gotoPage(pageNum){
         setPage(pageNum);
+        dispatch({type: actionTypes.SELECT_PAGE, payload: pageNum})
         //dispatch(getStoryBookCollection(query, tags, pageNum));
     }
     const [query, setQuery] = useState('');
@@ -53,14 +58,14 @@ export default function StoryBookCollection(props) {
     }
     //initial calls on mount but stops re-render only on change of query, tags, page 
     useEffect(() => {
-        getStoryCollection(query, tags, page);
-    }, [query, tags, page]);
+        getStoryCollection(query, tags, selectedPage);
+    }, [query, tags, selectedPage]);
 
     return (
         <React.Fragment>
             <h1> Stories</h1>
             <SearchBox handleSearch={handleSearch}/>
-            <Grid item lg={12} xs={12} md={12}><PaginationController gotoPage={gotoPage} nbPages={nbPages}/></Grid>
+            <Grid item lg={12} xs={12} md={12}><PaginationController currentPage={selectedPage} gotoPage={gotoPage} nbPages={nbPages}/></Grid>
             <Fab onClick={scrollTop} className={classes.fabu} color="primary" aria-label="add">
                 <ArrowUpward />
             </Fab>
