@@ -14,7 +14,7 @@ function App() {
           <meta name="description" content="Todos on steroid!" />
           <meta name="theme-color" content="#008f68" />
         </Helmet>
-        
+        <Helmet><title>SSR React App</title></Helmet>
       </HelmetProvider>
         <React.Fragment>
            <Routes/>
