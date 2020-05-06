@@ -5,13 +5,18 @@ import Pagination from '@material-ui/lab/Pagination';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
     '& > * + *': {
       marginTop: theme.spacing(2),
+      marginBottom: theme.spacing(2)
     },
+
   },
 }));
 
-export default function PaginationControlled({gotoPage,nbPages}) {
+export default function PaginationControlled({ gotoPage, nbPages }) {
   const classes = useStyles();
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => {
@@ -22,7 +27,7 @@ export default function PaginationControlled({gotoPage,nbPages}) {
   return (
     <div className={classes.root}>
       <Typography>Page: {page}</Typography>
-      <Pagination count={nbPages} page={page} onChange={handleChange} />
+      <Pagination color="secondary" variant='outlined' count={nbPages? (nbPages-1): 1} page={page} onChange={handleChange} />
     </div>
   );
 }

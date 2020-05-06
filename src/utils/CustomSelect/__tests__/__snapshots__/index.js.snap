@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card  props with different values 1`] = `
+<div
+  className="MuiFormControl-root makeStyles-formControl-1"
+>
+  <label
+    className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled"
+    data-shrink={false}
+    htmlFor="filled-age-native-simple"
+  >
+    Age
+  </label>
+  <div
+    className="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-formControl"
+    onClick={[Function]}
+  >
+    <select
+      aria-invalid={false}
+      className="MuiSelect-root MuiSelect-select MuiSelect-filled MuiInputBase-input MuiFilledInput-input"
+      disabled={false}
+      multiple={false}
+      name="TagSelect"
+      onAnimationStart={[Function]}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      required={false}
+      value=""
+    >
+      <option
+        value="summary"
+      >
+        summary
+      </option>
+      <option
+        value="comment"
+      >
+        comment
+      </option>
+    </select>
+    <svg
+      aria-hidden={true}
+      className="MuiSvgIcon-root MuiSelect-icon MuiSelect-iconFilled"
+      focusable="false"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M7 10l5 5 5-5z"
+      />
+    </svg>
+  </div>
+</div>
+`;
+
+exports[`Card  props with different values 2`] = `
+<div
+  className="MuiFormControl-root makeStyles-formControl-1"
+>
+  <label
+    className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled"
+    data-shrink={false}
+    htmlFor="filled-age-native-simple"
+  >
+    Age
+  </label>
+  <div
+    className="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-formControl"
+    onClick={[Function]}
+  >
+    <select
+      aria-invalid={false}
+      className="MuiSelect-root MuiSelect-select MuiSelect-filled MuiInputBase-input MuiFilledInput-input"
+      disabled={false}
+      multiple={false}
+      name="TagSelect"
+      onAnimationStart={[Function]}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      required={false}
+      value=""
+    >
+      <option
+        value="None"
+      >
+        NA
+      </option>
+    </select>
+    <svg
+      aria-hidden={true}
+      className="MuiSvgIcon-root MuiSelect-icon MuiSelect-iconFilled"
+      focusable="false"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M7 10l5 5 5-5z"
+      />
+    </svg>
+  </div>
+</div>
+`;

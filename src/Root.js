@@ -4,15 +4,15 @@ import { PersistGate } from 'redux-persist/integration/react'
 
 import configureStore from './store/configureStore';
 
-export default ( {children, initialState = {} } ) => {
-    const {store, persistor} = configureStore(initialState);
+export default ({ children }) => {
+    const { store, persistor } = configureStore();
 
     return (
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
-            {children}
+                {children}
             </PersistGate>
-            
+
         </Provider>
     )
 }
