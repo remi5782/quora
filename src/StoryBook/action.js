@@ -1,5 +1,5 @@
 import * as actionTypes from './constants';
-import axios from 'axios';
+import axios from '../axios.config';
 export const getStoryBookCollection = (query, tags,page)=> async (dispatch) => {
     dispatch({type: actionTypes.STORY_LOADING});
     try{
